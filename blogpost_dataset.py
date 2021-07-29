@@ -169,7 +169,7 @@ def transform_original_dataset_2_bert_compatible(src_path,max_length=512,limit=-
     #pull a subset of the dataset if a limit was given
     if limit>0:
         indices= np.random.choice(range(len(blogpost_ds)),size=limit,replace=False) #choose random indices
-        blogpost_ds= Subset(indices,blogpost_ds)
+        blogpost_ds= Subset(blogpost_ds,indices)
 
     #lists that will stored the transformed/tokenized text
     input_ids_list = []
@@ -202,7 +202,7 @@ if __name__=="__main__":
     bert_ds=transform_original_dataset_2_bert_compatible(r"C:\Users\nick\Code\MachineLearning_Projects\Bewerbung_NLP\data\english_datasets\en_train.csv",limit=4)
 
     for item in bert_ds:
-        print(item.input_ids[:2])
+        print(item)
         break
 
 
