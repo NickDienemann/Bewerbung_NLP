@@ -91,7 +91,7 @@ class Bert_compatible_dataset(Dataset):
             for input_ids,attention_mask,token_type_ids,label in zip(input_ids_list,attention_mask_list,token_type_ids_list,label_list):
 
                 #create a namedtuple storing that data and append it to self.data
-                item= self.Dataset_item(input_ids,attention_mask,token_type_ids,label,None)
+                item= self.Dataset_item(input_ids,attention_mask,token_type_ids,label,0)
                 self.data.append(item)
 
 
@@ -201,8 +201,14 @@ if __name__=="__main__":
     #create a bert compatible dataset
     bert_ds=transform_original_dataset_2_bert_compatible(r"C:\Users\nick\Code\MachineLearning_Projects\Bewerbung_NLP\data\english_datasets\en_train.csv",limit=4)
 
-    for item in bert_ds:
-        print(item)
+    #for item in bert_ds:
+    #    print(item)
+    #    break
+
+    #create a dataloader
+    bert_dl= DataLoader(bert_ds,batch_size=4)
+    for batch in bert_dl:
+        print(batch)
         break
 
 
