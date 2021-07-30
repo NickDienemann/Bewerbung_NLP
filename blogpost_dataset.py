@@ -60,7 +60,7 @@ class Bert_compatible_dataset(Dataset):
     this class holds a dataset that was transformed using the BertTransform
     """
 
-    def __init__(self,input_ids_list,attention_mask_list,token_type_ids_list,label_list,text_list=None):
+    def __init__(self,input_ids_list,attention_mask_list,token_type_ids_list,label_list,text_list=None,transform=None):
         """
         task: create a dataset from the given lists of tokens. if text_list is given that column will hold the original text \n
         parameters:input_ids_list(list(token id)), attention_mask_list(list(attention mask)),token_type_ids_list(list(token_type_id)) ,label_list(list(label)), text_list(list(optional: orignal text))\n
@@ -94,6 +94,8 @@ class Bert_compatible_dataset(Dataset):
                 item= self.Dataset_item(input_ids,attention_mask,token_type_ids,label,0)
                 self.data.append(item)
 
+        self.transform = transform
+
 
     def __len__(self):
         """
@@ -115,8 +117,46 @@ class Bert_compatible_dataset(Dataset):
         if torch.is_tensor(index):
             index= index.tolist()
 
-        return self.data[index]
+        data=self.data[index]
 
+        if self.transform:
+            data= self.transform(data)
+
+        return data
+
+
+class BertToTensor(object):
+    """
+    This class serves as a transform to transfer the elements of namedtuple into tensors on the given device
+    """
+
+    def __init__(self,device="cpu"):
+        """
+        task:  \n
+        parameters:\n
+        return value:
+        """
+
+        self.device=device
+
+    def __call__(self,named_tuple):
+        """
+        task: transform the elements of the named tuple into tensors and ship them over to self.device \n
+        parameters: named_tuple("Bert_dataset_item",["input_ids","attention_mask","token_type_ids","label","text"]) \n
+        return value: transformed elements
+        """
+
+        #unpack the named tuple
+        input_ids,attention_mask,token_type_ids,label,text = named_tuple
+
+        #transform to tensor
+        input_ids= torch.IntTensor(input_ids).to(device=self.device)
+        attention_mask= torch.IntTensor(attention_mask).to(device=self.device)
+        token_type_ids= torch.IntTensor(token_type_ids).to(device=self.device)
+        label= torch.IntTensor(label).to(device=self.device)
+        text= torch.IntTensor(text).to(device=self.device)
+
+        return input_ids,attention_mask,token_type_ids,label,text
 
 
 class BertTransform(object):
@@ -153,7 +193,7 @@ class BertTransform(object):
         Dataset_item=namedtuple("Dataset_item",["text","label"]) 
         return Dataset_item(transformed_text,item.label)
 
-def transform_original_dataset_2_bert_compatible(src_path,max_length=512,limit=-1):
+def transform_original_dataset_2_bert_compatible(src_path,max_length=512,limit=-1,device="cpu"):
     """
     task: use the BertTokenize transform to tokenize the given original Dataset and thus create a dataset that is bert compatible \n
     parameters: src_path(path to original data), max_length(int(max length allowed for transformer, 512 for bert)),limit(number of entries to use) \n
@@ -187,7 +227,7 @@ def transform_original_dataset_2_bert_compatible(src_path,max_length=512,limit=-
         label_list.append([label])
 
     #return the Bert_compatible_dataset derived from those lists
-    return Bert_compatible_dataset(input_ids_list,attention_mask_list,token_type_ids_list,label_list)
+    return Bert_compatible_dataset(input_ids_list,attention_mask_list,token_type_ids_list,label_list,transform=BertToTensor(device))
 
 
 
@@ -209,6 +249,7 @@ if __name__=="__main__":
     bert_dl= DataLoader(bert_ds,batch_size=4)
     for batch in bert_dl:
         print(batch)
+        print(batch[0].device)
         break
 
 

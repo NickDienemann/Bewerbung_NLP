@@ -9,18 +9,19 @@ from torch.optim import Adam
 from torch.nn import CrossEntropyLoss    
 from torchmetrics import Accuracy
 from torch.utils.data import DataLoader 
+import torch
 
 if __name__=="__main__":
 
     #create a bert compatible dataset
-    bert_ds= transform_original_dataset_2_bert_compatible(r"C:\Users\nick\Code\MachineLearning_Projects\Bewerbung_NLP\data\english_datasets\en_train.csv",limit=4)
+    bert_ds= transform_original_dataset_2_bert_compatible(r"C:\Users\nick\Code\MachineLearning_Projects\Bewerbung_NLP\data\english_datasets\en_train.csv",limit=100)
 
     #create a corresponding dataloader
     bert_dl= DataLoader(bert_ds,batch_size=6,shuffle=True)
 
     #learning rate and number of params
     lr=2e-5
-    number_of_epochs= 1
+    number_of_epochs= 4
     epsilon= 1e-8
 
     #init the model
@@ -52,11 +53,12 @@ if __name__=="__main__":
 
             #forward_pass
             output=model(input_ids_list,attention_mask_list,token_type_ids_list)
+            #something is wrong with the model inputs here, prob cuz they are no tensors
 
             #compute loss
-            batch_loss=criterion(output,label_list)
+            batch_loss=criterion(output.logits,label_list.flatten().to(dtype=torch.long))
             print(batch_loss)
-            criterion.backward()
+            batch_loss.backward()
 
             #optimize
             optimizer.step()
