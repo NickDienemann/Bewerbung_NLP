@@ -53,7 +53,6 @@ if __name__=="__main__":
 
             #forward_pass
             output=model(input_ids_list,attention_mask_list,token_type_ids_list)
-            #something is wrong with the model inputs here, prob cuz they are no tensors
 
             #compute loss
             batch_loss=criterion(output.logits,label_list.flatten().to(dtype=torch.long))
