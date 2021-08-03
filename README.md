@@ -11,3 +11,6 @@ In case you want to save a trained model, feel free to do so by using the code p
 ## Other files
 The EDA_toolkit is a selfwritten object-oriented data exploration tool wrapepd around an EDA course on Kaggle to offer a nice and quick-to-use API. It is used to explore the correlation between syntax and the posts likelihood of being cencored in the data exploration notebook. 
 The translator.py was used to translate the original dataset from chinese to english.
+
+## Future
+I am currently working on adding a metalearner using the best models i have trained from the different notebooks as base models and a shallow nn as a metalearner
