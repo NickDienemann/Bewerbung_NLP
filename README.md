@@ -1,7 +1,7 @@
 # Bewerbung_NLP
 
 ## General
-This project contains machine learning models from the nlp area in order to build a binary classifier for a chinese blogpost dataset. The goal is to predict whether or not a blogpost is going to be censored or not purely on its content
+This project contains machine learning models from the nlp area in order to build a binary classifier for a chinese blogpost dataset. The goal is to predict whether or not a blogpost is going to be censored purely based on its content.
 The original dataset can be downloaded from: https://gitlab.com/NLP4IF/nlp4-if-censorship-detection
 
 ## Notebooks
