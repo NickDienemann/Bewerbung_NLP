@@ -1,0 +1,50 @@
+{
+    "notebook_parameters": {
+        "data_parameters": {
+            "batchsize": 8,
+            "path_to_train_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\english_datasets\\en_train.csv",
+            "path_to_valid_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\english_datasets\\en_dev.csv",
+            "train_limit": -1,
+            "valid_limit": -1
+        },
+        "model_parameters": {
+            "attention_dropout": 0.2,
+            "dropout": 0.2,
+            "n_heads": 8,
+            "n_layers": 16,
+            "seq_classif_dropout": 0.2
+        },
+        "storage_parameters": {
+            "path_to_model_storage": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\trainings\\trained_models"
+        },
+        "training_parameters": {
+            "calc_ewma": true,
+            "learningrate_scheduler": "<class 'torch.optim.lr_scheduler.ExponentialLR'>",
+            "learningrate_scheduler_kwargs": {
+                "gamma": 0.999
+            },
+            "loss_function": "CrossEntropyLoss()",
+            "number_of_epochs": 3,
+            "optimizer": "<class 'torch.optim.adam.Adam'>",
+            "optimizer_kwargs": {
+                "betas": [
+                    0.9,
+                    0.999
+                ],
+                "lr": 0.0001
+            },
+            "update_lr_every_n_batches": 100,
+            "validate_every_n_batches": 100
+        }
+    },
+    "train_evaluation": {
+        "accuracy": 0.9755291005291006,
+        "confusion_matrix": "[[728  22]\n [ 15 747]]",
+        "precision": 0.9713914174252276
+    },
+    "valid_evaluation": {
+        "accuracy": 0.671957671957672,
+        "confusion_matrix": "[[68 28]\n [34 59]]",
+        "precision": 0.6781609195402298
+    }
+}

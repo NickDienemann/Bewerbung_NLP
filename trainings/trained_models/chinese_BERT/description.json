@@ -1,0 +1,32 @@
+{
+    "notebook_parameters": {
+        "data_parameters": {
+            "batchsize": 6,
+            "path_to_train_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\v1\\v1\\train.tsv",
+            "path_to_valid_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\v1\\v1\\dev.tsv",
+            "train_limit": -1,
+            "valid_limit": -1
+        },
+        "model_parameters": {
+            "num_hidden_layers": 24
+        },
+        "storage_parameters": {
+            "path_to_model_storage": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\trainings\\trained_models"
+        },
+        "training_parameters": {
+            "learningrate": 2e-05,
+            "loss_function": "CrossEntropyLoss()",
+            "number_of_epochs": 2
+        }
+    },
+    "train_evaluation": {
+        "accuracy": 0.9523809523809523,
+        "confusion_matrix": "[[725  25]\n [ 47 715]]",
+        "precision": 0.9662162162162162
+    },
+    "valid_evaluation": {
+        "accuracy": 0.6825396825396826,
+        "confusion_matrix": "[[80 16]\n [44 49]]",
+        "precision": 0.7538461538461538
+    }
+}
