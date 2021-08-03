@@ -2,8 +2,8 @@
     "notebook_parameters": {
         "data_parameters": {
             "batchsize": 6,
-            "path_to_train_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\v1\\v1\\train.tsv",
-            "path_to_valid_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\v1\\v1\\dev.tsv",
+            "path_to_train_data": "C:\\path\\to\\data\\v1\\v1\\train.tsv",
+            "path_to_valid_data": "C:\\path\\to\\dev.tsv",
             "train_limit": -1,
             "valid_limit": -1
         },
@@ -11,7 +11,7 @@
             "num_hidden_layers": 24
         },
         "storage_parameters": {
-            "path_to_model_storage": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\trainings\\trained_models"
+            "path_to_model_storage": "C:\\path\\to\\trainings\\trained_models"
         },
         "training_parameters": {
             "learningrate": 2e-05,

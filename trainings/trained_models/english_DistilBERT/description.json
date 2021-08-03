@@ -2,8 +2,8 @@
     "notebook_parameters": {
         "data_parameters": {
             "batchsize": 8,
-            "path_to_train_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\english_datasets\\en_train.csv",
-            "path_to_valid_data": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\data\\english_datasets\\en_dev.csv",
+            "path_to_train_data": "C:\\path\\to\\data\\english_datasets\\en_train.csv",
+            "path_to_valid_data": "C:\\path\\to\\data\\english_datasets\\en_dev.csv",
             "train_limit": -1,
             "valid_limit": -1
         },
@@ -15,7 +15,7 @@
             "seq_classif_dropout": 0.2
         },
         "storage_parameters": {
-            "path_to_model_storage": "C:\\Users\\nick\\Code\\MachineLearning_Projects\\Bewerbung_NLP\\trainings\\trained_models"
+            "path_to_model_storage": "C:\\path\\to\\trainings\\trained_models"
         },
         "training_parameters": {
             "calc_ewma": true,
