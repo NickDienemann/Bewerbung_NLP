@@ -33,4 +33,3 @@ if __name__=="__main__":
     #original_df=pd.DataFrame()
     original_df= pd.read_csv(r"C:\Users\nick\Code\MachineLearning_Projects\Bewerbung_NLP\data\v1\v1\dev.tsv", sep= "\t")
     mod_df=translate_df(original_df,"text",src_lan="zh-cn",dest_lan="en", full_dest_path="data/selfmade/en_dev_2")
-    print(mod_df.head())
